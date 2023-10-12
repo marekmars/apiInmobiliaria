@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\img_inmueble_1_1.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\img_inmueble_1_2.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ApiInmobiliarias.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.ApiInmobiliarias.props",
+      "PackagePath": "build\\ApiInmobiliarias.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.ApiInmobiliarias.props",
+      "PackagePath": "buildMultiTargeting\\ApiInmobiliarias.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.ApiInmobiliarias.props",
+      "PackagePath": "buildTransitive\\ApiInmobiliarias.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
