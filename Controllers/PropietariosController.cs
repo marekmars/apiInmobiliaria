@@ -56,13 +56,13 @@ public class PropietariosController : ControllerBase
             if (usuario == null) return Unauthorized("Token incorrecto");
             var dbUser = await _context.Propietarios.SingleOrDefaultAsync(x => x.Correo == usuario);
             if (dbUser == null) return BadRequest("No se encontro el usuario");
-            
+
             dbUser.Nombre = !string.IsNullOrEmpty(propietario.Nombre) ? propietario.Nombre : dbUser.Nombre;
             dbUser.Apellido = !string.IsNullOrEmpty(propietario.Apellido) ? propietario.Apellido : dbUser.Apellido;
             dbUser.Dni = !string.IsNullOrEmpty(propietario.Dni) ? propietario.Dni : dbUser.Dni;
             dbUser.Telefono = !string.IsNullOrEmpty(propietario.Telefono) ? propietario.Telefono : dbUser.Telefono;
             dbUser.Correo = !string.IsNullOrEmpty(propietario.Correo) ? propietario.Correo : dbUser.Correo;
-      
+
             if (propietario.Clave != null && propietario.Clave != "" && propietario.Clave != dbUser.Clave)
             {
                 dbUser.Clave = Convert.ToBase64String(KeyDerivation.Pbkdf2(
@@ -190,7 +190,7 @@ public class PropietariosController : ControllerBase
                 </body>
             </html>";
 
-            await enviarMail(email, subject, body);
+                await enviarMail(email, subject, body);
 
                 return Ok();
             }
@@ -198,7 +198,7 @@ public class PropietariosController : ControllerBase
             {
                 return BadRequest("Nombre de usuario o clave incorrectos");
             }
-            
+
         }
         catch (Exception ex)
         {
@@ -277,7 +277,7 @@ public class PropietariosController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-[HttpGet("sendEmail")]
+    [HttpGet("sendEmail")]
     private async Task<IActionResult> enviarMail(string email, string subject, string body)
     {
         var emailMessage = new MimeMessage();

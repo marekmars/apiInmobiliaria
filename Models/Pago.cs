@@ -1,17 +1,21 @@
 
-
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace Api_Inmobiliaria.Models;
-
+[Table("pagos")]
 public class Pago{
-
+[Column("id")]
     public int Id { get ; set ;}
-    public int Nro { get ; set;}
-    public DateTime Fecha { get ; set ; }
+    [Column("nroPago")]
+    public int NroPago { get ; set;}
+    [Column("idContrato")]
+    public int IdContrato  { get ; set ; }
+    [Column("fechaPago")]
+    public DateTime FechaPago { get ; set ; }
     public double Importe { get ; set ; }
-    public int ContratoId { get ; set ; }
-    [ForeignKey(nameof(ContratoId))]
+    
+    [ForeignKey(nameof(IdContrato))]
     public Contrato? Contrato { get ; set ; }
 
 }

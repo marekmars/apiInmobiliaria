@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cSAFm5PlzwwSVsecazms4G/I8a2M1jgeqmEyCrdhjvI=",
+  "Hash": "ptr6z3C8CbsZGsJqPPvye9sowxpWmbNG7cr5DtP9nHw=",
   "Source": "ApiInmobiliarias",
   "BasePath": "_content/ApiInmobiliarias",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\img_inmueble_1_2.jpg"
+    },
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_20.jpg",
+      "SourceId": "ApiInmobiliarias",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\",
+      "BasePath": "_content/ApiInmobiliarias",
+      "RelativePath": "uploads/img_inmueble_1_20.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\img_inmueble_1_20.jpg"
     }
   ]
 }

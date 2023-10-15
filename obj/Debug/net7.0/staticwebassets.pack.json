@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\uploads\\img_inmueble_1_2.jpg"
     },
     {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_20.jpg",
+      "PackagePath": "staticwebassets\\uploads\\img_inmueble_1_20.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ApiInmobiliarias.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

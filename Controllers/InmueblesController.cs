@@ -176,8 +176,6 @@ public class InmueblesController : ControllerBase
             var user = await _context.Propietarios.SingleOrDefaultAsync(x => x.Correo == usuario);
             var fecha = DateTime.Today;
 
-            var contrato = await _context.Contratos.SingleOrDefaultAsync();
-            Console.WriteLine($"fechaini: {contrato.FechaInicio} fechafin: {contrato.FechaFin}");
             var inmuebles = await _context.Contratos
                .Include(e => e.Inmueble)
                .ThenInclude(i => i.Propietario)
@@ -185,7 +183,7 @@ public class InmueblesController : ControllerBase
                .Where(e => e.Estado == true && e.FechaInicio <= fecha && e.FechaFin >= fecha)
                .Select(e => e.Inmueble)
                .ToListAsync();
-    
+            Console.WriteLine("COUNT: " + inmuebles.Count);
             return Ok(inmuebles);
 
         }
@@ -194,6 +192,112 @@ public class InmueblesController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    //==========================================
+    [HttpPost("crear")]
+    public async Task<IActionResult> CrearInmueble([FromBody] Inmueble inmueble)
+    {
+        try
+        {
+            Console.WriteLine("FOTO: " + inmueble.Foto);
+            var usuario = User.Identity.Name;
+            if (usuario == null) return Unauthorized("Token incorrecot");
+            var user = await _context.Propietarios.SingleOrDefaultAsync(x => x.Correo == usuario);
+            Inmueble inmuebleF = inmueble;
+            inmueble.PropietarioId = user.Id;
+            _context.Inmuebles.Add(inmueble);
+            _context.SaveChanges(); // Guarda los cambios en la base de datos
+
+            string nombreFoto = $"img_inmueble_{user.Id}_{inmueble.Id}.jpg";
+
+           if (inmuebleF.Foto.Contains(","))
+            {
+                inmuebleF.Foto = inmuebleF.Foto.Split(',')[1];
+            }
+
+            // Convierte la cadena base64 en bytes
+            byte[] imageBytes = Convert.FromBase64String(inmuebleF.Foto);
+
+            string wwwPath = environment.WebRootPath;
+            string path = Path.Combine(wwwPath, "Uploads");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            string fileName = nombreFoto;
+            string pathCompleto = Path.Combine(path, fileName);
+            // inmueble.Foto = Path.Combine("/Uploads", fileName);
+
+
+            // Crea una memoria en la secuencia de bytes
+            using (MemoryStream stream = new MemoryStream(imageBytes))
+            {
+                // Crea una imagen a partir de la secuencia de bytes
+                System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+                image.Save(pathCompleto, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+            inmueble.Foto = $"uploads/{nombreFoto}";
+            _context.Update(inmueble);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(inmueble);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest("Error al convertir la cadena base64 a imagen: " + ex.Message);
+        }
+    }
+    //==========================================
+    // [HttpPost("base64toimage")]
+    // public IActionResult Base64ToImage([FromForm] string base64String, string nombreFoto)
+    // {
+    //     try
+    //     {
+    //         // Verifica que la cadena base64 no sea nula o vacía
+    //         if (string.IsNullOrEmpty(base64String))
+    //         {
+    //             return BadRequest("La cadena base64 es nula o vacía.");
+    //         }
+    //         Console.WriteLine("base64String: " + base64String);
+
+    //         // Elimina los encabezados de datos (por ejemplo, "data:image/jpeg;base64,")
+    //         if (base64String.Contains(","))
+    //         {
+    //             base64String = base64String.Split(',')[1];
+    //         }
+
+    //         // Convierte la cadena base64 en bytes
+    //         byte[] imageBytes = Convert.FromBase64String(base64String);
+
+    //         string wwwPath = environment.WebRootPath;
+    //         string path = Path.Combine(wwwPath, "Uploads");
+    //         if (!Directory.Exists(path))
+    //         {
+    //             Directory.CreateDirectory(path);
+    //         }
+
+    //         string fileName = nombreFoto;
+    //         string pathCompleto = Path.Combine(path, fileName);
+    //         // inmueble.Foto = Path.Combine("/Uploads", fileName);
+
+
+    //         // Crea una memoria en la secuencia de bytes
+    //         using (MemoryStream stream = new MemoryStream(imageBytes))
+    //         {
+    //             // Crea una imagen a partir de la secuencia de bytes
+    //             System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+    //             image.Save(pathCompleto, System.Drawing.Imaging.ImageFormat.Jpeg);
+    //         }
+
+    //         return Ok("Imagen convertida y guardada exitosamente.");
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return BadRequest("Error al convertir la cadena base64 a imagen: " + ex.Message);
+    //     }
+    // }
 
     //==========================================
     [HttpGet("test")]

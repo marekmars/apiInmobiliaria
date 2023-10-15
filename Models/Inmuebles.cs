@@ -24,9 +24,8 @@ public enum TipoInmueble
         Casa = 1,
         Apartamento = 2,
         Oficina = 3,
-        LocalComercial = 4,
-        Terreno = 5,
-        Otro = 6
+        Local = 4,
+        Otro = 5
 }
 
 public enum UsoInmueble
