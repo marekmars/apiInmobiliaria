@@ -219,7 +219,7 @@ public class InmueblesController : ControllerBase
             byte[] imageBytes = Convert.FromBase64String(inmuebleF.Foto);
 
             string wwwPath = environment.WebRootPath;
-            string path = Path.Combine(wwwPath, "Uploads");
+            string path = Path.Combine(wwwPath, "Uploads","inmuebles");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -237,7 +237,7 @@ public class InmueblesController : ControllerBase
                 System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
                 image.Save(pathCompleto, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
-            inmueble.Foto = $"uploads/{nombreFoto}";
+            inmueble.Foto = $"uploads/inmuebles/{nombreFoto}";
             _context.Update(inmueble);
 
             await _context.SaveChangesAsync();

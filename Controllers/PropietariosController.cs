@@ -53,15 +53,30 @@ public class PropietariosController : ControllerBase
         try
         {
             var usuario = User.Identity?.Name;
+            int cantidad = _context.Propietarios.Count(u => u.Correo == propietario.Correo && u.Correo != usuario);
+            Console.WriteLine("CORREO DESDE EDITAR: "+propietario.Correo);
+
+
+            if (cantidad > 0)
+            {
+                Propietario? prop = null;
+                return Ok(prop);
+            }
+
             if (usuario == null) return Unauthorized("Token incorrecto");
             var dbUser = await _context.Propietarios.SingleOrDefaultAsync(x => x.Correo == usuario);
+
             if (dbUser == null) return BadRequest("No se encontro el usuario");
+
+            
 
             dbUser.Nombre = !string.IsNullOrEmpty(propietario.Nombre) ? propietario.Nombre : dbUser.Nombre;
             dbUser.Apellido = !string.IsNullOrEmpty(propietario.Apellido) ? propietario.Apellido : dbUser.Apellido;
             dbUser.Dni = !string.IsNullOrEmpty(propietario.Dni) ? propietario.Dni : dbUser.Dni;
             dbUser.Telefono = !string.IsNullOrEmpty(propietario.Telefono) ? propietario.Telefono : dbUser.Telefono;
             dbUser.Correo = !string.IsNullOrEmpty(propietario.Correo) ? propietario.Correo : dbUser.Correo;
+            dbUser.Avatar = !string.IsNullOrEmpty(propietario.Avatar) ? propietario.Avatar : dbUser.Avatar;
+            Console.WriteLine("correo: " + dbUser.Correo);
 
             if (propietario.Clave != null && propietario.Clave != "" && propietario.Clave != dbUser.Clave)
             {
@@ -74,7 +89,42 @@ public class PropietariosController : ControllerBase
             }
             _context.Update(dbUser);
             _context.SaveChanges();
-            return Ok(dbUser);
+       
+            Console.WriteLine("claveOriginal: " + propietario.Clave);
+            Console.WriteLine("claveNueva: " + dbUser.Clave);
+            Console.WriteLine("correoOriginal: " + propietario.Correo);
+            Console.WriteLine("correoNuevo: " + dbUser.Correo);
+
+            if (propietario.Correo!=usuario
+                || !string.IsNullOrWhiteSpace(propietario.Clave)
+                ||!string.IsNullOrEmpty(propietario.Clave))
+            {
+                return Ok("Reloguear");
+            }
+            
+
+            var key = new SymmetricSecurityKey(                                                                                                 
+                    System.Text.Encoding.ASCII.GetBytes(
+                        config["TokenAuthentication:SecretKey"]
+                    )
+                );
+
+            var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, dbUser.Correo),
+                    new Claim("FullName", dbUser.Nombre + " " + dbUser.Apellido),
+                    // new Claim(ClaimTypes.Role, "Propietario")
+                };
+
+            var token = new JwtSecurityToken(
+                issuer: config["TokenAuthentication:Issuer"],
+                audience: config["TokenAuthentication:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(60),
+                signingCredentials: credenciales
+            );
+            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
         }
         catch (Exception e)
         {
@@ -113,7 +163,6 @@ public class PropietariosController : ControllerBase
                 {
                     new Claim(ClaimTypes.Name, p.Correo),
                     new Claim("FullName", p.Nombre + " " + p.Apellido),
-                    // new Claim(ClaimTypes.Role, "Propietario")
                 };
 
                 var token = new JwtSecurityToken(
@@ -135,12 +184,12 @@ public class PropietariosController : ControllerBase
 
     [HttpPost("email")]
     [AllowAnonymous]
-    public async Task<IActionResult> GetByEmail([FromForm] string email)
+    public async Task<IActionResult> GetByEmail([FromForm] string correo)
     {
         try
         { //método sin autenticar, busca el propietario x email
-            Console.WriteLine($"Email: {email}");
-            var propietario = await _context.Propietarios.FirstOrDefaultAsync(x => x.Correo == email);
+            Console.WriteLine($"Email: {correo}");
+            var propietario = await _context.Propietarios.FirstOrDefaultAsync(x => x.Correo == correo);
             var link = "";
             string localIPv4 = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList
                 .FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
@@ -175,7 +224,7 @@ public class PropietariosController : ControllerBase
 
                 Console.WriteLine(link);
 
-                string subject = "Pedido de REcuperacion de Contraseña";
+                string subject = "Pedido de Recuperacion de Contraseña";
                 string body = @$"<html>
                 <body>
                     <h1>Recuperación de Contraseña</h1>
@@ -190,9 +239,9 @@ public class PropietariosController : ControllerBase
                 </body>
             </html>";
 
-                await enviarMail(email, subject, body);
+                await enviarMail(correo, subject, body);
 
-                return Ok();
+                return Ok(propietario);
             }
             else
             {

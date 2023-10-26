@@ -45,6 +45,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Propietario", policy => { policy.RequireClaim(ClaimTypes.Role, "Propietario");});
 });
 
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

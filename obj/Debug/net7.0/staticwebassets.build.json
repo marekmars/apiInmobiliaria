@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ptr6z3C8CbsZGsJqPPvye9sowxpWmbNG7cr5DtP9nHw=",
+  "Hash": "qdDclCfr5VuIkS9uE1AoHcg92OqUYc9+l/EGMtpvCco=",
   "Source": "ApiInmobiliarias",
   "BasePath": "_content/ApiInmobiliarias",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_1.jpg",
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\avatars\\avatar_1.png",
       "SourceId": "ApiInmobiliarias",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\",
       "BasePath": "_content/ApiInmobiliarias",
-      "RelativePath": "uploads/img_inmueble_1_1.jpg",
+      "RelativePath": "uploads/avatars/avatar_1.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,15 +31,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\img_inmueble_1_1.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\avatars\\avatar_1.png"
     },
     {
-      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_2.jpg",
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\avatars\\avatar_2.png",
       "SourceId": "ApiInmobiliarias",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\",
       "BasePath": "_content/ApiInmobiliarias",
-      "RelativePath": "uploads/img_inmueble_1_2.jpg",
+      "RelativePath": "uploads/avatars/avatar_2.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -48,15 +48,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\img_inmueble_1_2.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\avatars\\avatar_2.png"
     },
     {
-      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\img_inmueble_1_20.jpg",
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\inmuebles\\img_inmueble_1_1.jpg",
       "SourceId": "ApiInmobiliarias",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\",
       "BasePath": "_content/ApiInmobiliarias",
-      "RelativePath": "uploads/img_inmueble_1_20.jpg",
+      "RelativePath": "uploads/inmuebles/img_inmueble_1_1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,7 +65,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\img_inmueble_1_20.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\inmuebles\\img_inmueble_1_1.jpg"
+    },
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\uploads\\inmuebles\\img_inmueble_1_3.jpg",
+      "SourceId": "ApiInmobiliarias",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\ApiInmobiliarias\\wwwroot\\",
+      "BasePath": "_content/ApiInmobiliarias",
+      "RelativePath": "uploads/inmuebles/img_inmueble_1_3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\inmuebles\\img_inmueble_1_3.jpg"
     }
   ]
 }

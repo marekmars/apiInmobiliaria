@@ -8,6 +8,7 @@ D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Deb
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\ApiInmobiliarias.pdb
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\Humanizer.dll
+D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\JWT.dll
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\MailKit.dll
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
@@ -240,4 +241,3 @@ D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\obj\Deb
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\obj\Debug\net7.0\ApiInmobiliarias.pdb
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\obj\Debug\net7.0\ApiInmobiliarias.genruntimeconfig.cache
 D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\obj\Debug\net7.0\ref\ApiInmobiliarias.dll
-D:\Documentos\ULP\4to Cuatrimestre\Laboratorio III\.Net\ApiInmobiliarias\bin\Debug\net7.0\JWT.dll
