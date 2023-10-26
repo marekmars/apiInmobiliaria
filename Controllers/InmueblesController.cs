@@ -96,14 +96,18 @@ public class InmueblesController : ControllerBase
     {
         try
         {
+            var usuario = User.Identity.Name;
             var inmueble = await _context.Inmuebles
                 .Include(e => e.Propietario)
                 .SingleOrDefaultAsync(e => e.Id == id);
+                
 
             if (inmueble != null)
             {
+                 if (inmueble.Propietario.Correo != usuario) return Unauthorized("Acceso denegado");
                 return Ok(inmueble);
             }
+
             else
             {
                 return NotFound("Inmueble no encontrado");
