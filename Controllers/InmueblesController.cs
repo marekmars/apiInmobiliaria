@@ -67,7 +67,6 @@ public class InmueblesController : ControllerBase
     {
         try
         {
-
             Console.WriteLine("Id: " + id);
             var usuario = User.Identity.Name;
             if (usuario == null) return Unauthorized("Token no válido");
@@ -97,6 +96,7 @@ public class InmueblesController : ControllerBase
         try
         {
             var usuario = User.Identity.Name;
+             if (usuario == null) return Unauthorized("Token no válido");
             var inmueble = await _context.Inmuebles
                 .Include(e => e.Propietario)
                 .SingleOrDefaultAsync(e => e.Id == id);
@@ -118,56 +118,7 @@ public class InmueblesController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    //==========================================
 
-    //  [HttpGet("{id}/foto")]
-    //  [AllowAnonymous]
-    //     public IActionResult GetInmuebleFoto(int id)
-    //     {
-    //         var inmueble = _context.Inmuebles.FirstOrDefault(i => i.Id == id);
-
-    //         if (inmueble == null)
-    //         {
-    //             return NotFound();
-    //         }
-    //         var imageName=inmueble.Foto;
-    //         var wwwPath = environment.WebRootPath;
-    //         var path = Path.Combine(wwwPath, imageName);
-
-    //         if (System.IO.File.Exists(path))
-    //         {
-    //             Console.WriteLine("ENTRO AFOTO");
-    //             var imageBytes = System.IO.File.ReadAllBytes(path);
-    //             var mimeType = GetMimeType(imageName); // Obtén el tipo MIME de la imagen.
-    //             return File(imageBytes, mimeType);
-    //         }else{
-    //             return NotFound();
-    //         }
-
-    //         // Si tienes la URL de la foto en la propiedad FotoUrl, puedes devolverla como respuesta
-
-    //     }
-    //      private string GetMimeType(string fileName)
-    //     {
-    //         // Implementa la lógica para determinar el tipo MIME de la imagen basado en su extensión.
-    //         // Por ejemplo, puedes usar la extensión del archivo para determinar el tipo MIME.
-    //         // Asegúrate de manejar diferentes tipos de imágenes, como JPEG, PNG, etc.
-
-    //         // Ejemplo:
-    //         if (fileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase))
-    //         {
-    //             return "image/jpeg";
-    //         }
-    //         else if (fileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
-    //         {
-    //             return "image/png";
-    //         }
-
-    //         // Devuelve un tipo MIME predeterminado si no se puede determinar.
-    //         return "application/octet-stream";
-    //     }
-
-    //==========================================
 
     [HttpGet("alquiladas")]
     [Authorize]
@@ -253,56 +204,7 @@ public class InmueblesController : ControllerBase
             return BadRequest("Error al convertir la cadena base64 a imagen: " + ex.Message);
         }
     }
-    //==========================================
-    // [HttpPost("base64toimage")]
-    // public IActionResult Base64ToImage([FromForm] string base64String, string nombreFoto)
-    // {
-    //     try
-    //     {
-    //         // Verifica que la cadena base64 no sea nula o vacía
-    //         if (string.IsNullOrEmpty(base64String))
-    //         {
-    //             return BadRequest("La cadena base64 es nula o vacía.");
-    //         }
-    //         Console.WriteLine("base64String: " + base64String);
-
-    //         // Elimina los encabezados de datos (por ejemplo, "data:image/jpeg;base64,")
-    //         if (base64String.Contains(","))
-    //         {
-    //             base64String = base64String.Split(',')[1];
-    //         }
-
-    //         // Convierte la cadena base64 en bytes
-    //         byte[] imageBytes = Convert.FromBase64String(base64String);
-
-    //         string wwwPath = environment.WebRootPath;
-    //         string path = Path.Combine(wwwPath, "Uploads");
-    //         if (!Directory.Exists(path))
-    //         {
-    //             Directory.CreateDirectory(path);
-    //         }
-
-    //         string fileName = nombreFoto;
-    //         string pathCompleto = Path.Combine(path, fileName);
-    //         // inmueble.Foto = Path.Combine("/Uploads", fileName);
-
-
-    //         // Crea una memoria en la secuencia de bytes
-    //         using (MemoryStream stream = new MemoryStream(imageBytes))
-    //         {
-    //             // Crea una imagen a partir de la secuencia de bytes
-    //             System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
-    //             image.Save(pathCompleto, System.Drawing.Imaging.ImageFormat.Jpeg);
-    //         }
-
-    //         return Ok("Imagen convertida y guardada exitosamente.");
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         return BadRequest("Error al convertir la cadena base64 a imagen: " + ex.Message);
-    //     }
-    // }
-
+    
     //==========================================
     [HttpGet("test")]
     [AllowAnonymous]

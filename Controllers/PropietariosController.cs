@@ -312,7 +312,6 @@ public class PropietariosController : ControllerBase
         }
     }
 
-
     [HttpGet("test")]
     [AllowAnonymous]
     public IActionResult Test()
